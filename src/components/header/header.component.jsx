@@ -10,10 +10,11 @@ import logo from '../../assets/images/logo.png'
 import './header.styles.css'
 
 function Header() {
-    const {setShowhide} = useContext(ShowHideContext)
-    const [isOpen, setOpen] = useState(false)
+    const {showhide, openclose} = useContext(ShowHideContext)
+    const [podesi, setPodesi] = showhide
+    const [prikazi, setPrikazi] = openclose
 
-    console.log(isOpen, setOpen)
+    console.log(prikazi)
 
     return(
         <div className='header'>
@@ -27,7 +28,7 @@ function Header() {
                 </div>
             </div>
             <div className='menu-button'>
-                <Hamburger size={40} color="#ffffff" toggled={isOpen} toggle={setOpen} onToggle={toggled => toggled ? setShowhide('menu-show') : setShowhide('menu-hide')} />
+                <Hamburger size={40} color="#ffffff" toggled={prikazi} toggle={setPrikazi} onToggle={toggled => toggled ? setPodesi('menu-show') : setPodesi('menu-hide')} /> 
             </div>
         </div>
     )

@@ -28,6 +28,7 @@ function App() {
   // const [state, dispatch] = useReducer(sectionReducer, initialState)
 
   const [showhide, setShowhide] = useState('menu-hide')
+  const [isOpen, setOpen] = useState(false)
 
   // useEffect( () => {
 
@@ -53,7 +54,7 @@ function App() {
 
   return (
     <div className="App">
-      <ShowHideContext.Provider value={{showhide, setShowhide}}>
+      <ShowHideContext.Provider value={{showhide: [showhide, setShowhide], openclose: [isOpen, setOpen]}}>
         <MenuButtons />
         <Header />
       </ShowHideContext.Provider>

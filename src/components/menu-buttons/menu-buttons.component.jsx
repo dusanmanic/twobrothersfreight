@@ -5,21 +5,24 @@ import { ShowHideContext } from '../../context/show-hide.context';
 import './menu-buttons.styles.css'
 
 function MenuButtons () {
-    const {showhide, setShowhide} = useContext(ShowHideContext)  
+    const {showhide, openclose} = useContext(ShowHideContext)
+    const [podesi, setPodesi] = showhide
+    const [prikazi, setPrikazi] = openclose
 
     function handleClick() {
-        setShowhide('menu-hide')
+        setPodesi('menu-hide')
+        setPrikazi(false)
     }
   
     return(
-        <div className={`menu-buttons ${showhide}`}>
+        <div className={`menu-buttons ${podesi}`}>
             <div className='buttons-holder'>
-                <Link className='link-btn' to='/' >Home</Link>
-                <Link className='link-btn' to='/about-us' >About us</Link>
-                <Link className='link-btn' to='/services' >Services</Link>
-                <Link className='link-btn' to='/join-us' >Join us</Link>
+                <Link className='link-btn' to='/' onClick={handleClick}>Home</Link>
+                <Link className='link-btn' to='/about-us' onClick={handleClick}>About us</Link>
+                <Link className='link-btn' to='/services' onClick={handleClick}>Services</Link>
+                <Link className='link-btn' to='/join-us' onClick={handleClick}>Join us</Link>
                 <Link className='link-btn' to='/contact' onClick={handleClick}>Contact</Link>
-                <Link className='link-btn' to='/sign-in' >Sign in</Link>
+                <Link className='link-btn' to='/sign-in' onClick={handleClick}>Sign in</Link>
             </div>
         </div>
     )
