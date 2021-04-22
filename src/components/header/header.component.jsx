@@ -1,4 +1,4 @@
-import React, {useContext} from 'react'
+import React, {useState, useContext} from 'react'
 import {Link} from 'react-router-dom'
  
 import ComponentButton from '../apply-button/component-button.component'
@@ -11,7 +11,10 @@ import './header.styles.css'
 
 function Header() {
     const {setShowhide} = useContext(ShowHideContext)
-    
+    const [isOpen, setOpen] = useState(false)
+
+    console.log(isOpen, setOpen)
+
     return(
         <div className='header'>
             <Link className='logo' style={{backgroundImage: `url(${logo})`}} to='/' />
@@ -24,7 +27,7 @@ function Header() {
                 </div>
             </div>
             <div className='menu-button'>
-                <Hamburger size={40} color="#ffffff"  onToggle={toggled => toggled ? setShowhide('menu-show') : setShowhide('menu-hide')}/>
+                <Hamburger size={40} color="#ffffff" toggled={isOpen} toggle={setOpen} onToggle={toggled => toggled ? setShowhide('menu-show') : setShowhide('menu-hide')} />
             </div>
         </div>
     )
