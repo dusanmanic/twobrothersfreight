@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@900&display=swap');
+
+.home-page-4 {
+    width: 100vw;
+    height: 60vh;
+    background-color: rgb(180, 180, 180);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.div-holder-4 {
+    width: 100vw;
+    height: 60vh;
+    background-color: rgb(180, 180, 180);
+}
+
+.text-hold-4 {
+    font-family: Poppins;
+    width: 400px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.text-4-1 {
+    font-size: 35px;
+}
+
+.text-4-2 {
+    font-size: 20px;
+}
+
+.image-hold-4 {
+    width: 400px;
+    height: 400px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 50px;
+}
+
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+@keyframes moveLeft {
+from { margin-left: -45px;}
+to {margin: 0}
+}
+
+@keyframes moveRight {
+    from { margin-right: -45px;}
+    to {margin: 0}
+    }
+
+.anim-2 {
+animation: fadein 0.5s linear, moveLeft 1s linear
+}
+
+.anim-3 {
+    animation: fadein 0.5s linear, moveRight 1s linear
+    }

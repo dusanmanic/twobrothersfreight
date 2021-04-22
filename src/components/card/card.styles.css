@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
+
+.card {
+    width: 450px;
+    height: 350px;
+    border-radius: 15px;
+    background-color: white;
+    margin: 45px;
+}
+
+img {
+    width: 150px;
+    height: 150px;
+    margin-top: -50px;
+    margin-left: -50px;
+}
+
+.text-holder {
+    width: 350px;
+    height: 250px;
+    display: flex;
+    padding: 25px;
+}
+
+span {
+    font-family: Poppins;
+}
+
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+@keyframes moveDown {
+from { margin-top: 0;}
+to {margin: 0}
+}
+
+.anim-1 {
+animation: fadein 0.7s linear, moveDown 0.5s linear
+}
+
+.anim-2 {
+animation: fadein 1s linear
+}
