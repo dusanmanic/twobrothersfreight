@@ -1,5 +1,6 @@
 import React, {useContext} from 'react'
-
+import {Link} from 'react-router-dom'
+ 
 import ComponentButton from '../apply-button/component-button.component'
 import { Fade as Hamburger } from 'hamburger-react'
 import { ShowHideContext } from '../../context/show-hide.context';
@@ -13,7 +14,7 @@ function Header() {
     
     return(
         <div className='header'>
-            <div className='logo' style={{backgroundImage: `url(${logo})`}} />
+            <Link className='logo' style={{backgroundImage: `url(${logo})`}} to='/' />
             <div className='buttons'>
                 <div className='call-button'>
                     <ComponentButton name={'Call us'} />

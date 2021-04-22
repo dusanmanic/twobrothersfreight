@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@900&display=swap');
+
+.header-background {
+    background-image: url('../../assets/images/header-background.jpg');
+    background-size: cover;
+    width: 100vw;
+    height: 15vh;
+}
+
+.contact-page {
+    /* background-color: blue; */
+    width: 100vw;
+    height: 85vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.contact-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.contact-text-first {
+    font-family: Poppins;
+    font-size: 35px;
+    font-weight: 600;
+}

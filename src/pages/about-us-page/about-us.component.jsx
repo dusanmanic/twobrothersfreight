@@ -4,7 +4,7 @@ export default function AboutUs() {
 
     return(
         <div>
-            AboutUs
+            About us
         </div>
     )
 }
