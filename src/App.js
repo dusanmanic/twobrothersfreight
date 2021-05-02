@@ -1,8 +1,9 @@
-import React, {useState, useEffect, useReducer} from 'react'
+import React, {Fragment, useState, useEffect, useReducer} from 'react'
 import {Switch, Route} from 'react-router-dom'
 
 import Header from './components/header/header.component'
 import MenuButtons from './components/menu-buttons/menu-buttons.component'
+import Footer from './components/footer/footer.component'
 
 import HomePage from './pages/home-page/home-page.component'
 import Contact from './pages/contact-page/contact.component'
@@ -10,6 +11,7 @@ import AboutUs from './pages/about-us-page/about-us.component'
 import JoinUs from './pages/join-us-page/join-us.component'
 import Services from './pages/services-page/services.component'
 import SignIn from './pages/sign-in-page/sign-in.component'
+import GreetingPage from './pages/greeting-page/greeting.component'
 
 import {ShowHideContext} from './context/show-hide.context'
 
@@ -19,6 +21,8 @@ import './App.css';
 
 function App() {
 
+  
+  
   // const windowHeight = window.innerHeight
 
   // const secondSection = windowHeight * 70 / 100
@@ -29,6 +33,17 @@ function App() {
 
   const [showhide, setShowhide] = useState('menu-hide')
   const [isOpen, setOpen] = useState(false)
+  const [applicant, setApplicant] = useState('')
+  const [statusError, setStatusError] = useState('')
+
+  let contextObjects = {
+    showhide: [showhide, setShowhide],
+    openclose: [isOpen, setOpen],
+    applicant: [applicant, setApplicant],
+    emailStatus: [statusError, setStatusError]
+  }
+
+  // console.log(applicant)
 
   // useEffect( () => {
 
@@ -54,20 +69,26 @@ function App() {
 
   return (
     <div className="App">
-      <ShowHideContext.Provider value={{showhide: [showhide, setShowhide], openclose: [isOpen, setOpen]}}>
-        <MenuButtons />
-        <Header />
-      </ShowHideContext.Provider>
-      <Switch>
-        <Route exact path='/' component={HomePage}/>
-        <Route exact path='/about-us' component={AboutUs}/>
-        <Route exact path='/services' component={Services}/>
-        <Route exact path='/join-us' component={JoinUs}/>
-        <Route exact path='/contact' component={Contact}/>
-        <Route exact path='/sign-in' component={SignIn}/>
-      </Switch>
+      <ShowHideContext.Provider value={contextObjects}>
+        <Switch>
+          <Route exact path='/welcome-to-our-company' component={GreetingPage} />
+          <Fragment>
+            <MenuButtons />
+            <Header />  
+            <Route exact path='/' component={HomePage}/>
+            <Route exact path='/about-us' component={AboutUs}/>
+            <Route exact path='/services' component={Services}/>
+            <Route exact path='/join-us' component={JoinUs}/>
+            <Route exact path='/contact' component={Contact}/>
+            <Route exact path='/sign-in' component={SignIn}/>
+            <Footer />
+          </Fragment>
+        </Switch>
+
+      </ShowHideContext.Provider> 
     </div>
   );
 }
+
 
 export default App;

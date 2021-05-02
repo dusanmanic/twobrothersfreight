@@ -1,6 +1,6 @@
 import React, {useContext} from 'react'
 import { Link } from 'react-router-dom'
-import { ShowHideContext } from '../../context/show-hide.context';
+import { ShowHideContext } from '../../context/show-hide.context'
 
 import './menu-buttons.styles.css'
 

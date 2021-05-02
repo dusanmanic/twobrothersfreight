@@ -5,8 +5,8 @@ import './component-button.styles.css'
 function ComponentButton({name}) {
 
     return(
-        <div className='apply-button'>
-            <button className='button'>{`${name}`}</button>
+        <div className='apply-button-wrapper'>
+            <button className='apply-button'>{`${name}`}</button>
         </div>
     )
 }

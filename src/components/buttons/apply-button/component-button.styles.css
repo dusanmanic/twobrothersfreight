@@ -1,12 +1,12 @@
-.button {
+.apply-button {
     width: 150px;
+    height: 50px;
+    font-family: Poppins;
     background-color: rgb(61, 131, 211);
     border-radius: 12px;
-    padding: 12px;
     margin: 0 20px;
     border: none;
     color: white;
-    text-align: center;
     text-decoration: none;
     font-size: 16px;
 }

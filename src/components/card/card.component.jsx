@@ -6,7 +6,7 @@ function Card({ image, text }) {
 
     return(
         <div className='card anim-1'>
-            <img src={`${image}`} alt=""/>
+            <img className='card-img' src={`${image}`} alt=""/>
             <div className="text-holder">
             <span>{`${text}`}</span>
             </div>

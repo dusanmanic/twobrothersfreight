@@ -1,8 +1,12 @@
 import React from 'react'
 
+import './home-page-5.styles.css'
+
 function HomePageFifth() {
     return(
-        <div>Home Page Fifth Component</div>
+        <div className='div-holder-5'>
+
+        </div>
     )
 }
 

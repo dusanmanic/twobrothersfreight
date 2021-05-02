@@ -1,0 +1,15 @@
+.link-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 150px;
+    height: 50px;
+    font-family: Poppins;
+    background-color: rgb(61, 131, 211);
+    border-radius: 12px;
+    margin: 0 20px;
+    border: none;
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+}

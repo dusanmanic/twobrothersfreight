@@ -1,4 +1,7 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useContext} from 'react'
+
+import {ShowHideContext} from '../../context/show-hide.context'
+
 import './home-page.styles.css'
 
 import HomePageFirst from '../../components/home-page-components/home-page-1/home-page-1.component'
@@ -12,6 +15,10 @@ import HomePageEighth from '../../components/home-page-components/home-page-8/ho
 import HomePageNinth from '../../components/home-page-components/home-page-9/home-page-9.component'
 
 function HomePage() {
+    
+    const {showhide, openclose, applicant} = useContext(ShowHideContext)
+    const [podesi, setPodesi] = showhide
+    const [prikazi, setPrikazi] = openclose
 
     const windowHeight = window.innerHeight
 
@@ -24,24 +31,31 @@ function HomePage() {
     const [section_4, setSection_4] = useState(false)
 
     useEffect( () => {
-        window.addEventListener('scroll', event => {
-          event.preventDefault()
-    
-          if(window.pageYOffset > secondSection && window.pageYOffset < secondSection + 100) {
-            setSection_2(true)
-            console.log('section_2')
-          }  
-          if(window.pageYOffset > thirdSection && window.pageYOffset < thirdSection + 100) {
-            setSection_3(true)
-            console.log('section_3')
-          }
-          if(window.pageYOffset > fourthSection && window.pageYOffset < fourthSection + 100) {
-            setSection_4(true)
-            console.log('section_4')
-          }
-        })
+
+        function calculationSection() {
+            if(window.pageYOffset < 50) {
+                setPrikazi(false)
+                setPodesi('menu-hide')
+            }
+            if(window.pageYOffset > secondSection && window.pageYOffset < secondSection + 100) {
+                setSection_2(true)
+                console.log('section_2')
+            }  
+            if(window.pageYOffset > thirdSection && window.pageYOffset < thirdSection + 100) {
+                setSection_3(true)
+                console.log('section_3')
+            }
+            if(window.pageYOffset > fourthSection && window.pageYOffset < fourthSection + 100) {
+                setSection_4(true)
+                console.log('section_4')
+            }        
+        }
+
+        window.addEventListener('scroll', calculationSection)
+
+        return () => window.removeEventListener('scroll', calculationSection)
       
-      })
+    })
 
     return(
         <div className='home-page'>
@@ -65,11 +79,9 @@ function HomePage() {
             </section>
             <section className='section-7'>
                 <HomePageSeventh />
-
             </section>
             <section className='section-8'>
                 <HomePageEighth />
-
             </section>
             <section className='section-9'>
                 <HomePageNinth />

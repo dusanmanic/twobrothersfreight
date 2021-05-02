@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
-
 .card {
     width: 450px;
     height: 350px;
@@ -8,7 +6,7 @@
     margin: 45px;
 }
 
-img {
+.card-img {
     width: 150px;
     height: 150px;
     margin-top: -50px;

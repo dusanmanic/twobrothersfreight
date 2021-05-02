@@ -2,10 +2,11 @@ import React from 'react'
 
 import './home-page-4.styles.css'
 
-import ComponentButton from '../../apply-button/component-button.component'
+import LinkButton from '../../buttons/link-button/link-button.component'
 import ImageFourth from '../../../assets/images/main-page-fourth.jpg'
 
 function HomePageFourth({section}) {
+    
     return(
         <div className="div-holder-4">
             {( () => {
@@ -21,9 +22,7 @@ function HomePageFourth({section}) {
                                     The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Ciceros De
                                     Finibus Bonorum et Malorum for use in a type specimen book.
                                 </p>
-                                <div className='apply-button'>
-                                    <ComponentButton name={'Apply NOW'} />
-                                </div>
+                                <LinkButton to={'join-us'} name={'Apply NOW'} />
                             </div>
                         </div>
                     )
