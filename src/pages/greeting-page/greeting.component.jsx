@@ -1,4 +1,3 @@
-import { EmailJSResponseStatus } from 'emailjs-com'
 import React, {useState, useEffect, useContext} from 'react'
 import {useHistory} from 'react-router-dom'
 import {ShowHideContext} from '../../context/show-hide.context'
