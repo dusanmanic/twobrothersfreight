@@ -7,6 +7,7 @@ import Spiner from '../../assets/spiner/spiner.svg'
 import './join-us.styles.css'
 
 import {countryListAllIsoData, stateNames} from '../../js-files/countries'
+import {emailProviders} from '../../js-files/email-providers'
 
 import InputComponent from '../../components/input-component/input.component'
 import SectionComponent from '../../components/section-component/section.component'
@@ -79,7 +80,7 @@ export default function JoinUs() {
             }, 5000)
             setSubmitDisable('submit-button-disable')
             setSpinerEnable('submit-spiner-enable')
-            fetch("http://213.196.96.200:3002/send", {
+            fetch("http://178.17.24.61:3002/send", {
             method: "POST",
             headers: { "Content-type": "application/json" },
             body: JSON.stringify({ mailerState }),
