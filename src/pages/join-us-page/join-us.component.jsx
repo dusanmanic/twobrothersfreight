@@ -58,11 +58,19 @@ export default function JoinUs() {
 
     const handleSubmit = (event) => {
         event.preventDefault()
+
+        const [emailName, emailProvider] = event.target.email.value.split("@")
         
         if(event.target.country.value.includes("Select country")) {
             alert('Select Country')
         } else if(event.target.country.value.includes("United States of America (the)") && event.target.province.value.includes("Select USA state/province")) {
             alert('Choose State/Province')
+        } else if(!emailProviders.includes(emailProvider)) {
+            // console.log(emailName)
+            // console.log(emailProvider)
+            // console.log(event.target.email.value)
+            // console.log(emailProviders.includes(emailProvider))
+            alert('Please type correct email address')
         } else if(event.target.driving.value.includes('notselected')) {
             alert('Answer "How much driving experience have you had?"')
         } else if(event.target.carriers.value.includes('notselected')) {
