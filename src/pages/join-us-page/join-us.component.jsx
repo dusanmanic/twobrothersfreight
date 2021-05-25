@@ -88,7 +88,7 @@ export default function JoinUs() {
             }, 5000)
             setSubmitDisable('submit-button-disable')
             setSpinerEnable('submit-spiner-enable')
-            fetch("http://178.17.24.61:3002/send", {
+            fetch("http://92.60.225.142:3002/send", {
             method: "POST",
             headers: { "Content-type": "application/json" },
             body: JSON.stringify({ mailerState }),
@@ -196,8 +196,6 @@ export default function JoinUs() {
 }
 
 
-
-
 // console.log(event.target.firstName.value)
 // console.log(event.target.lastName.value)
 // console.log(event.target.address_one.value)
@@ -210,5 +208,3 @@ export default function JoinUs() {
 // console.log(event.target.carriers.value)
 // console.log(event.target.accidents.value)
 // console.log(event.target.violations.value)
-
-
