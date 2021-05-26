@@ -12,6 +12,9 @@ import JoinUs from './pages/join-us-page/join-us.component'
 import Services from './pages/services-page/services.component'
 import SignIn from './pages/sign-in-page/sign-in.component'
 import GreetingPage from './pages/greeting-page/greeting.component'
+import DatabasePage from './pages/database-page/database.component'
+
+import MessangerChat from './components/messanger/messanger.component'
 
 import {ShowHideContext} from './context/show-hide.context'
 
@@ -73,6 +76,7 @@ function App() {
         <Switch>
           <Route exact path='/welcome-to-our-company' component={GreetingPage} />
           <Fragment>
+            {/* <MessangerChat /> */}
             <MenuButtons />
             <Header />  
             <Route exact path='/' component={HomePage}/>
@@ -81,6 +85,7 @@ function App() {
             <Route exact path='/join-us' component={JoinUs}/>
             <Route exact path='/contact' component={Contact}/>
             <Route exact path='/sign-in' component={SignIn}/>
+            <Route exact path='/database' component={DatabasePage} />
             <Footer />
           </Fragment>
         </Switch>
