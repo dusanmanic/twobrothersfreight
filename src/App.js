@@ -75,6 +75,7 @@ function App() {
       <ShowHideContext.Provider value={contextObjects}>
         <Switch>
           <Route exact path='/welcome-to-our-company' component={GreetingPage} />
+          <Route exact path='/database' component={DatabasePage} />
           <Fragment>
             {/* <MessangerChat /> */}
             <MenuButtons />
@@ -84,8 +85,7 @@ function App() {
             <Route exact path='/services' component={Services}/>
             <Route exact path='/join-us' component={JoinUs}/>
             <Route exact path='/contact' component={Contact}/>
-            <Route exact path='/sign-in' component={SignIn}/>
-            <Route exact path='/database' component={DatabasePage} />
+            <Route exact path='/sign-in' component={SignIn}/>            
             <Footer />
           </Fragment>
         </Switch>

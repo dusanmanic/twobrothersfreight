@@ -9,6 +9,8 @@ import './join-us.styles.css'
 import {countryListAllIsoData, stateNames} from '../../js-files/countries'
 import {emailProviders} from '../../js-files/email-providers'
 
+import {firebase, firestore} from '../../firebase/firebase.utils'
+
 import InputComponent from '../../components/input-component/input.component'
 import SectionComponent from '../../components/section-component/section.component'
 
@@ -81,6 +83,9 @@ export default function JoinUs() {
             alert('Answer "How many violations have you been cited for in the last 12 months?"')
         } else {
             // console.log(mailerState)
+            let date = new Date()
+            // console.log(date.getDate())
+            let firebaseEntry = firestore.collection("candidates").doc(`${mailerState.firstName}${mailerState.lastName}${date.getHours()}${date.getMinutes()}`)
             let errorRedirect = setTimeout( () => {
                 scrollTop();
                 setApllicantGreeting(`${mailerState.firstName} ${mailerState.lastName}`);
@@ -88,7 +93,7 @@ export default function JoinUs() {
             }, 5000)
             setSubmitDisable('submit-button-disable')
             setSpinerEnable('submit-spiner-enable')
-            fetch("http://92.60.225.142:3002/send", {
+            fetch("http://89.34.2.196:3002/send", {
             method: "POST",
             headers: { "Content-type": "application/json" },
             body: JSON.stringify({ mailerState }),
@@ -98,6 +103,22 @@ export default function JoinUs() {
                 console.log(data)
                 if (data.status.includes('Email sent')) {
                     // alert("Message Sent")
+                    firebaseEntry.set({
+                        firstName: mailerState.firstName,
+                        lastName: mailerState.lastName,
+                        address_one: mailerState.address_one,
+                        address_two: mailerState.address_two,
+                        country: mailerState.country,
+                        city: mailerState.city,
+                        province: mailerState.province,
+                        tel: mailerState.tel,
+                        email: mailerState.email,
+                        driving: mailerState.driving,
+                        carriers: mailerState.carriers,
+                        accidents: mailerState.accidents,
+                        violations: mailerState.violations,
+                        appDate: date
+                    })
                     setMailStatus('yes')
                     setApllicantGreeting(`${mailerState.firstName} ${mailerState.lastName}`)
                     scrollTop()
