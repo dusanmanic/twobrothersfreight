@@ -6,8 +6,8 @@ import './link-button.styles.css'
 function LinkButton({to, name}) {
 
     const scrollTop = () => {
-        document.body.scrollTop = (window.innerHeight * 15 / 100);
-        document.documentElement.scrollTop = (window.innerHeight * 15 / 100);
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
     }
 
     return(

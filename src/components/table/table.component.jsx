@@ -66,54 +66,67 @@ function TableUsers() {
         })
     }, [])
 
-    console.log(candidate)
+    useEffect(() => {
+        candidate.map( user => {
+            console.log(Object.keys(user.address_two).length === 0)
+        })
+    }, [])
 
     return (
-        <div className="table-page-wrapper">            
+        <div className="table-page-wrapper">
+            <div className="table-buttons">
+                <button className="home-button" onClick={() => history.push('/')}>Home</button> 
+                <button className="log-out-button" onClick={logOut}>Log out</button>
+            </div>
             {( () => {
                 if(openDatapage) {
-                    return (
-                        <div>
-                            <table className="table-wrapper">
-                                <tbody>
-                                    <tr>
-                                        <th>Firstname</th>
-                                        <th>Lastname</th>
-                                        <th>Address one</th>
-                                        <th>Address two</th>
-                                        <th>Country</th>
-                                        <th>City</th>
-                                        <th>Province</th>
-                                        <th>Telephone</th>
-                                        <th>E-mail</th>
-                                        <th>Driving</th>
-                                        <th>Carriers</th>
-                                        <th>Accidents</th>
-                                        <th>Violations</th>
-                                    </tr>
-                                    {candidate.map((user, index) => (
-                                    <tr key={index}>
-                                        <td>{user.firstName}</td>
-                                        <td>{user.lastName}</td>
-                                        <td>{user.address_one}</td>
-                                        <td>{user.address_two}</td>
-                                        <td>{user.country}</td>
-                                        <td>{user.city}</td>
-                                        <td>{user.province}</td>
-                                        <td>{user.tel}</td>
-                                        <td>{user.email}</td>
-                                        <td>{user.driving}</td>
-                                        <td>{user.carriers}</td>
-                                        <td>{user.accidents}</td>
-                                        <td>{user.violations}</td>
-                                        {/* <td><button onClick={sendMessage}>Send message</button></td> */}
-                                    </tr>
-                                    ))}
-                                </tbody>
-                            </table>
-                            <button className="log-out-button" onClick={logOut}>Log out</button>
-                            <button className="home-button" onClick={() => history.push('/')}>Home</button>
-                        </div>                                             
+                    return (                        
+                        <table className="table-wrapper">
+                            <tbody>
+                                <tr>
+                                    <th>Candidate</th>
+                                    <th>Addresses</th>
+                                    <th>Country</th>
+                                    <th>City</th>
+                                    <th>Province</th>
+                                    <th>Telephone</th>
+                                    <th>E-mail</th>
+                                    <th>Driving</th>
+                                    <th>Carr...</th>
+                                    <th>Acci...</th>
+                                    <th>Viol...</th>
+                                </tr>
+                                {candidate.map((user, index) => (
+                                <tr key={index}>
+                                    <td>{user.firstName} {user.lastName}</td>
+                                    <td>
+                                        <div className="tr-addresses">
+                                            *{user.address_one}
+                                            <div className="address-two">
+                                                {(() => {
+                                                    if(Object.keys(user.address_two).length !== 0) {
+                                                        return (
+                                                            `**${user.address_two}`
+                                                        )
+                                                    }
+                                                }) ()}
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>{user.country}</td>
+                                    <td>{user.city}</td>
+                                    <td>{user.province}</td>
+                                    <td>{user.tel}</td>
+                                    <td>{user.email}</td>
+                                    <td>{user.driving}</td>
+                                    <td>{user.carriers}</td>
+                                    <td>{user.accidents}</td>
+                                    <td>{user.violations}</td>
+                                    {/* <td><button onClick={sendMessage}>Send message</button></td> */}
+                                </tr>
+                                ))}
+                            </tbody>
+                        </table>                                            
                     )
                 } else {
                     return (

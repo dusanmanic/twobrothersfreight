@@ -11,7 +11,10 @@ import Spiner from '../../assets/spiner/spiner.svg'
 
 export default function SignIn() {
 
-    const history = useHistory()
+    const history = useHistory()    
+
+    const loginDate = new Date()
+    console.log(loginDate)
 
     const [submitDisable, setSubmitDisable] = useState('')
     const [spinerEnable, setSpinerEnable] = useState('submit-spiner-disable')
@@ -39,7 +42,8 @@ export default function SignIn() {
                     localStorage.setItem("userToken", randomToken)
                     localStorage.setItem("userLog", event.target.username.value)
                     auth.update({
-                        userLogged: true,
+                        // userLogged: true,
+                        loggedDate: loginDate,
                         strToken: randomToken
                     }).then(() => {
                         history.push('/database')
@@ -50,7 +54,6 @@ export default function SignIn() {
                 }
             }
         })
-
         console.log(event.target.username.value)
         console.log(event.target.password.value)
     }

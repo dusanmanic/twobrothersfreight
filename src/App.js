@@ -14,6 +14,8 @@ import SignIn from './pages/sign-in-page/sign-in.component'
 import GreetingPage from './pages/greeting-page/greeting.component'
 import DatabasePage from './pages/database-page/database.component'
 
+import {firestore} from './firebase/firebase.utils'
+
 import MessangerChat from './components/messanger/messanger.component'
 
 import {ShowHideContext} from './context/show-hide.context'
@@ -23,8 +25,6 @@ import {sectionReducer} from './reducer/sectionReducer'
 import './App.css';
 
 function App() {
-
-  
   
   // const windowHeight = window.innerHeight
 
@@ -76,6 +76,7 @@ function App() {
         <Switch>
           <Route exact path='/welcome-to-our-company' component={GreetingPage} />
           <Route exact path='/database' component={DatabasePage} />
+          <Route exact path='/join-us' component={JoinUs}/>
           <Fragment>
             {/* <MessangerChat /> */}
             <MenuButtons />
@@ -83,7 +84,6 @@ function App() {
             <Route exact path='/' component={HomePage}/>
             <Route exact path='/about-us' component={AboutUs}/>
             <Route exact path='/services' component={Services}/>
-            <Route exact path='/join-us' component={JoinUs}/>
             <Route exact path='/contact' component={Contact}/>
             <Route exact path='/sign-in' component={SignIn}/>            
             <Footer />

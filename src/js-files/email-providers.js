@@ -1,4 +1,5 @@
 export const emailProviders = [
+    "testemailadresa.com",
     "hitmail.com",
     "rxdoc.biz",
     "cox.com",

@@ -44,11 +44,6 @@ export default function JoinUs() {
         violations: "",
     });
 
-    const scrollTop = () => {
-        document.body.scrollTop = (window.innerHeight * 15 / 100);
-        document.documentElement.scrollTop = (window.innerHeight * 15 / 100);
-    }
-
     const handleStateChange = (event) => {
         // console.log(event.target.name)
         // console.log(event.target.value)
@@ -87,9 +82,9 @@ export default function JoinUs() {
             // console.log(date.getDate())
             let firebaseEntry = firestore.collection("candidates").doc(`${mailerState.firstName}${mailerState.lastName}${date.getHours()}${date.getMinutes()}`)
             let errorRedirect = setTimeout( () => {
-                scrollTop();
                 setApllicantGreeting(`${mailerState.firstName} ${mailerState.lastName}`);
-                setMailStatus('no'); history.push('/welcome-to-our-company')
+                setMailStatus('no');
+                history.push('/welcome-to-our-company')
             }, 5000)
             setSubmitDisable('submit-button-disable')
             setSpinerEnable('submit-spiner-enable')
@@ -121,7 +116,6 @@ export default function JoinUs() {
                     })
                     setMailStatus('yes')
                     setApllicantGreeting(`${mailerState.firstName} ${mailerState.lastName}`)
-                    scrollTop()
                     setMailerState({
                         firstName: "",
                         lastName: "",
@@ -162,7 +156,6 @@ export default function JoinUs() {
      
     return(
         <div className='joinus-wrapper'>
-            <div className='header-background' />
             <div className="joinus-page">
                 <form className="joinus-form" onSubmit={handleSubmit}>
                     <InputComponent label={"First Name"} type={"text"} name={"firstName"} required={"required"} handleChange={handleStateChange} />
