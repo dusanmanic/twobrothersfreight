@@ -60,7 +60,8 @@ app.post("/send", function (req, res) {
       from: 'Most Famous Company',
       to: `${req.body.mailerState.email}`,
       subject: 'Job application',
-      text: `Hello ${req.body.mailerState.firstName} ${req.body.mailerState.lastName}, thank you for application!`
+      text: `Hello ${req.body.mailerState.firstName} ${req.body.mailerState.lastName}, thank you for application!
+      Please verify your information on folowing url "http://213.196.96.84/verify/${req.body.mailerState.verificationURL}"`
     }
 
     transporter.sendMail(responseMail, function (err, data) {

@@ -38,17 +38,17 @@ export default function GreetingPage() {
         <div className="greeting-page">
             {( () => {
                 if(mailStatus.includes('yes')) {
-                    return(
+                    return (
                         <div className="greeting">
                             Hello {applicantGreeting}, <br/>
                             thank you for applying for our company! <br/>
-                            You will receive confirmation email shortley. . . 
+                            You will receive verification email shortley. . . 
                             <br/><br/><br/><br/><br/><br/>
                             You will be redirected to Home page in {redirectTime} . . .
                         </div>
                     )
                 } else if(mailStatus.includes('no')) {
-                    return(
+                    return (
                         <div className="greeting">
                             Hello {applicantGreeting}, <br/>
                             we have some issues according to email service <br/>

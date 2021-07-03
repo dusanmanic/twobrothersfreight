@@ -1,4 +1,4 @@
-import React, {useState, useContext} from 'react'
+import React, {useState, useContext, useEffect} from 'react'
 import {useHistory} from 'react-router-dom'
 
 import {ShowHideContext} from '../../context/show-hide.context'
@@ -15,6 +15,12 @@ import InputComponent from '../../components/input-component/input.component'
 import SectionComponent from '../../components/section-component/section.component'
 
 export default function JoinUs() {    
+
+    const randomToken =  Math.random().toString(36).substr(2)+Math.random().toString(36).substr(2)+Math.random().toString(36).substr(2)+Math.random().toString(36).substr(2)   
+
+    useEffect(() => {
+        
+    }, [])
 
     const history = useHistory()
 
@@ -42,14 +48,18 @@ export default function JoinUs() {
         carriers: "",
         accidents: "",
         violations: "",
+        verificationURL: "",
+        isVerified: ""
     });
 
     const handleStateChange = (event) => {
         // console.log(event.target.name)
-        // console.log(event.target.value)
+        console.log(event.target.value)
         setMailerState((prevState) => ({
-          ...prevState,
-          [event.target.name]: event.target.value,
+            ...prevState,
+            [event.target.name]: event.target.value,
+            verificationURL: randomToken,
+            isVerified: false
         }));
     }
 
@@ -77,7 +87,7 @@ export default function JoinUs() {
         } else if(event.target.violations.value.includes('notselected')) {
             alert('Answer "How many violations have you been cited for in the last 12 months?"')
         } else {
-            // console.log(mailerState)
+            console.log(mailerState)
             let date = new Date()
             // console.log(date.getDate())
             let firebaseEntry = firestore.collection("candidates").doc(`${mailerState.firstName}${mailerState.lastName}${date.getHours()}${date.getMinutes()}`)
@@ -88,7 +98,7 @@ export default function JoinUs() {
             }, 5000)
             setSubmitDisable('submit-button-disable')
             setSpinerEnable('submit-spiner-enable')
-            fetch("http://89.34.2.196:3002/send", {
+            fetch("http://213.196.96.84:3002/send", {
             method: "POST",
             headers: { "Content-type": "application/json" },
             body: JSON.stringify({ mailerState }),
@@ -99,6 +109,7 @@ export default function JoinUs() {
                 if (data.status.includes('Email sent')) {
                     // alert("Message Sent")
                     firebaseEntry.set({
+                        userName: mailerState.firstName+mailerState.lastName+date.getHours()+date.getMinutes(),
                         firstName: mailerState.firstName,
                         lastName: mailerState.lastName,
                         address_one: mailerState.address_one,
@@ -112,7 +123,9 @@ export default function JoinUs() {
                         carriers: mailerState.carriers,
                         accidents: mailerState.accidents,
                         violations: mailerState.violations,
-                        appDate: date
+                        appDate: date,
+                        verificationURL: mailerState.verificationURL,
+                        isVerified: mailerState.isVerified
                     })
                     setMailStatus('yes')
                     setApllicantGreeting(`${mailerState.firstName} ${mailerState.lastName}`)
@@ -130,6 +143,8 @@ export default function JoinUs() {
                         carriers: "",
                         accidents: "",
                         violations: "",
+                        verificationURL: "",
+                        sVerified: false
                     })
                     setSubmitDisable('submit-spiner-disable')
                     setSpinerEnable('')

@@ -1,0 +1,79 @@
+import React, {useEffect, useState} from 'react'
+
+import { firestore } from '../../firebase/firebase.utils'
+
+import { useHistory } from 'react-router-dom'
+
+import Spiner from '../../assets/spiner/spiner.svg'
+
+import './verification.styles.css'
+
+export default function Verification({someUrl}) {
+
+    const history = useHistory()
+
+    const [rollSite, setRollSite] = useState(false)
+    const [verified, setVerified] = useState(false)
+    const [candidate, setCandidate] = useState([])
+
+    useEffect(() => {
+
+        let candidateArray = []
+
+        firestore.collection("candidates").get()
+        .then(querySnapshot => {
+            querySnapshot.forEach( doc => {
+                let user = doc.data()
+                if(user.verificationURL === someUrl.substring(8)) {
+                    setRollSite(true)
+                    candidateArray.push(user)
+                    firestore.collection("candidates").doc(`${user.userName}`).update({
+                        // verificationURL: "shunemMunem",
+                        isVerified: true
+                    })
+                }
+            })
+        }).then(() => {
+            setVerified(true)
+            setCandidate(candidateArray)
+        })
+
+    }, [])
+
+    const redirectToHomePage = () => {
+        firestore.collection("candidates").get()
+        .then(querySnapshot => {
+            querySnapshot.forEach( doc => {
+                let user = doc.data()
+                if(user.verificationURL === someUrl.substring(8)) {
+                    firestore.collection("candidates").doc(`${user.userName}`).update({
+                        verificationURL: "shunemMunem",
+                        // isVerified: true
+                    })
+                }
+            })
+        })
+        history.push('/')
+    }
+
+    return (
+        <div className={'verification-wrapper'}>
+            {(() => {
+                if(!verified && rollSite) {
+                    return <img className={"verification-spiner"} src={Spiner} alt=""/>
+                } else if(candidate.length !== 0) {
+                    return (
+                        <div className="greeting">
+                            Hello {candidate[0].firstName} {candidate[0].lastName}, <br/>
+                            thank you for applying for our company. <br/>
+                            We will text you as soon as posible. . .
+                            <br/><br/>
+                            <button className={`submit-button`} onClick={redirectToHomePage}> Home Page </button>                  
+                        </div>
+                        
+                    )
+                }
+            }) ()}
+        </div>
+    )
+}

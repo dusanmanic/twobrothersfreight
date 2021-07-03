@@ -55,7 +55,8 @@ function TableUsers() {
                         driving: data.driving,
                         carriers: data.carriers,
                         accidents: data.accidents,
-                        violations: data.violations
+                        violations: data.violations,
+                        verified: data.isVerified
                     }
                 ]))
             });
@@ -95,6 +96,7 @@ function TableUsers() {
                                     <th>Carr...</th>
                                     <th>Acci...</th>
                                     <th>Viol...</th>
+                                    <th>Verified</th>
                                 </tr>
                                 {candidate.map((user, index) => (
                                 <tr key={index}>
@@ -122,6 +124,16 @@ function TableUsers() {
                                     <td>{user.carriers}</td>
                                     <td>{user.accidents}</td>
                                     <td>{user.violations}</td>
+                                    <td>
+                                        {(() => {
+                                            if(user.verified) {
+                                                return "Yes"
+                                            } else {
+                                                return "No"
+                                            }
+                                        }) ()}
+                                    </td>
+                                    {console.log(user.verified)}
                                     {/* <td><button onClick={sendMessage}>Send message</button></td> */}
                                 </tr>
                                 ))}
