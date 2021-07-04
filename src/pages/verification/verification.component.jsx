@@ -26,33 +26,20 @@ export default function Verification({someUrl}) {
                 let user = doc.data()
                 if(user.verificationURL === someUrl.substring(8)) {
                     setRollSite(true)
+                    setVerified(true)
                     candidateArray.push(user)
                     firestore.collection("candidates").doc(`${user.userName}`).update({
-                        // verificationURL: "shunemMunem",
                         isVerified: true
                     })
                 }
             })
         }).then(() => {
-            setVerified(true)
             setCandidate(candidateArray)
         })
 
     }, [])
 
     const redirectToHomePage = () => {
-        firestore.collection("candidates").get()
-        .then(querySnapshot => {
-            querySnapshot.forEach( doc => {
-                let user = doc.data()
-                if(user.verificationURL === someUrl.substring(8)) {
-                    firestore.collection("candidates").doc(`${user.userName}`).update({
-                        verificationURL: "shunemMunem",
-                        // isVerified: true
-                    })
-                }
-            })
-        })
         history.push('/')
     }
 
@@ -69,8 +56,7 @@ export default function Verification({someUrl}) {
                             We will text you as soon as posible. . .
                             <br/><br/>
                             <button className={`submit-button`} onClick={redirectToHomePage}> Home Page </button>                  
-                        </div>
-                        
+                        </div>                        
                     )
                 }
             }) ()}
