@@ -53,7 +53,7 @@ export default function Verification({someUrl}) {
                         <div className="greeting">
                             Hello {candidate[0].firstName} {candidate[0].lastName}, <br/>
                             thank you for applying for our company. <br/>
-                            We will text you as soon as posible. . .
+                            Your account is now verified. . .
                             <br/><br/>
                             <button className={`submit-button`} onClick={redirectToHomePage}> Home Page </button>                  
                         </div>                        
